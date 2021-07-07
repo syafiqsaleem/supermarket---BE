@@ -3,6 +3,8 @@ const app = require('express')()
 
 const express = require('express')
 const path = require('path')
+const http = require('http').Server(app)
+
 const validator = require('express-validator')
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -12,8 +14,8 @@ const flash = require('connect-flash')
 const port = process.env.PORT || '8000'
 const productRouter = require('./routers/productRoutes')
 const viewRouter = require('./routers/viewRoutes')
-
-const urlencodeParser = bodyParser.urlencoded({ extended: true })
+app.use(bodyParser.json())
+var urlencodeParser = bodyParser.urlencoded({ extended: true })
 
 app.use(
   session({
@@ -51,14 +53,6 @@ const expressLayouts = require('express-ejs-layouts')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.use(expressLayouts)
-app.use(express.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
-
-app.use(bodyParser.json())
 
 const mongo_URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/${process.env.DB_NAME}`
 
