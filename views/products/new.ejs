@@ -45,35 +45,30 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Basic Information</h4>
+        <h4 class="card-title">Product Information</h4>
         <p class="card-title-desc">Fill all information below</p>
 
-        <form>
+        <form method="POST" action="/products">
           <div class="row">
             <div class="col-sm-6">
               <div class="mb-3">
                 <label for="productname">Product Name</label>
+                <input id="name" name="name" type="text" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="brand">Brand</label>
                 <input
-                  id="productname"
-                  name="productname"
+                  id="brand"
+                  name="brand"
                   type="text"
                   class="form-control"
                 />
               </div>
               <div class="mb-3">
-                <label for="category">Origin</label>
+                <label for="origin">Origin</label>
                 <input
-                  id="manufacturername"
-                  name="manufacturername"
-                  type="text"
-                  class="form-control"
-                />
-              </div>
-              <div class="mb-3">
-                <label for="manufacturerbrand">Brand</label>
-                <input
-                  id="manufacturerbrand"
-                  name="manufacturerbrand"
+                  id="origin"
+                  name="origin"
                   type="text"
                   class="form-control"
                 />
@@ -99,24 +94,24 @@
                 </select>
               </div>
               <div class="mb-3">
-                <label class="control-label">Features</label>
-
-                <select
-                  class="select2 form-control select2-multiple"
-                  multiple="multiple"
-                  data-placeholder="Choose ..."
-                >
-                  <option value="WI">Wireless</option>
-                  <option value="BE">Battery life</option>
-                  <option value="BA">Bass</option>
-                </select>
+                <label for="unit">Unit</label>
+                <input id="unit" name="unit" type="text" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="weight">Weight</label>
+                <input
+                  id="weight"
+                  name="weight"
+                  type="text"
+                  class="form-control"
+                />
               </div>
               <div class="mb-3">
                 <label for="productdesc">Product Description</label>
                 <textarea
                   class="form-control"
-                  id="productdesc"
-                  rows="5"
+                  id="description"
+                  rows="4"
                 ></textarea>
               </div>
             </div>
@@ -127,7 +122,7 @@
               type="submit"
               class="btn btn-primary waves-effect waves-light"
             >
-              Save Changes
+              Create Product
             </button>
             <button
               type="button"
@@ -170,26 +165,26 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="mb-3">
-                <label for="metatitle">Stocks Available</label>
+                <label for="stocks">Stocks Available</label>
                 <input
-                  id="metatitle"
-                  name="productname"
+                  id="stocks"
+                  name="stocks"
                   type="text"
                   class="form-control"
                 />
               </div>
               <div class="mb-3">
-                <label for="metakeywords">Status</label>
+                <label for="status">Status</label>
                 <input
-                  id="metakeywords"
-                  name="manufacturername"
+                  id="status"
+                  name="status"
                   type="text"
                   class="form-control"
                 />
               </div>
             </div>
 
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
               <div class="mb-3">
                 <label for="metadescription">Meta Description</label>
                 <textarea
@@ -199,7 +194,7 @@
                 ></textarea>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <div class="d-flex flex-wrap gap-2">
             <button

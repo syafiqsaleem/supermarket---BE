@@ -1,34 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Siong Siong Inventory System</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- App favicon -->
-    <link rel="shortcut icon" href="public/assets/images/favicon.ico" />
+<head>
+  
+  <meta charset="utf-8" />
+  <title><%- title %> | Skote - Nodejs Admin & Dashboard Template</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+  <meta content="Themesbrand" name="author" />
+  <!-- App favicon -->
+  <link rel="shortcut icon" href="public/assets/images/favicon.ico">
 
-    <%- HeaderCss %> <%- include ('./Partials/HeaderStyle') %>
-  </head>
+  <%- HeaderCss %>
+  <%- include ('./Partials/HeaderStyle')  %>
 
-  <body data-sidebar="dark">
-    <!-- Begin page -->
-    <div id="layout-wrapper">
-      <%- include ('./Partials/Header') %> <%- include ('./Partials/Sidebar') %>
+</head>
 
-      <div class="main-content">
-        <div class="page-content">
-          <div class="container-fluid"><%- breadcrumb %> <%- body %></div>
+<body data-sidebar="dark">
+
+  <!-- Begin page -->
+  <div id="layout-wrapper">
+
+    <%- include ('./Partials/Header')  %>
+    <%- include ('./Partials/Sidebar')  %>
+
+    <div class="main-content">
+      <div class="page-content">
+        <div class="container-fluid">
+
+          <%- breadcrumb %>
+          <%- body %>
         </div>
-        <%- include ('./Partials/Footer') %>
       </div>
+      <%- include ('./Partials/Footer') %>
     </div>
+  </div>
 
-    <%- include ('./Partials/Rightbar') %> <%- include
-    ('./Partials/FooterScript') %> <%- FooterJs %>
+  <%- include ('./Partials/Rightbar')  %>
+  <%- include ('./Partials/FooterScript')  %>
 
-    <script src="public/assets/js/app.js"></script>
+  <%- FooterJs %>
 
-    <%- BottomJs %>
-  </body>
+  <script src="public/assets/js/app.js"></script>
+
+  <%- BottomJs %>
+</body>
+
 </html>
