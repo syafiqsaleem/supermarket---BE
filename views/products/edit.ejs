@@ -32,7 +32,7 @@
           <li class="breadcrumb-item">
             <a href="javascript: void(0);">Siong Siong Supermart</a>
           </li>
-          <li class="breadcrumb-item active">Add Product</li>
+          <li class="breadcrumb-item active">Edit Product</li>
         </ol>
       </div>
     </div>
@@ -48,12 +48,12 @@
         <h4 class="card-title">Product Information</h4>
         <p class="card-title-desc">Fill all information below</p>
 
-        <form method="POST" action="/products">
+        <form method="POST" action="/products/<%= product.slug %>?_method=PATCH">
           <div class="row">
             <div class="col-sm-6">
               <div class="mb-3">
                 <label for="productname">Product Name</label>
-                <input id="name" name="name" type="text" class="form-control" />
+                <input id="name" name="name" type="text" class="form-control" value="<%= product.name %>">
               </div>
               <div class="mb-3">
                 <label for="brand">Brand</label>
@@ -62,7 +62,8 @@
                   name="brand"
                   type="text"
                   class="form-control"
-                />
+                  value="<%= product.name %>">
+                
               </div>
               <div class="mb-3">
                 <label for="origin">Origin</label>
@@ -71,7 +72,8 @@
                   name="origin"
                   type="text"
                   class="form-control"
-                />
+                  value="<%= product.origin %>">
+                
               </div>
               <div class="mb-3">
                 <label for="price">Price</label>
@@ -80,7 +82,8 @@
                   name="price"
                   type="text"
                   class="form-control"
-                />
+                  value="<%= product.price %>">
+                
               </div>
               <div class="mb-3">
                 <label for="stocks">Stocks</label>
@@ -89,7 +92,8 @@
                   name="stocks"
                   type="text"
                   class="form-control"
-                />
+                  value="<%= product.stocks %>">
+                
               </div>
             </div>
 
@@ -97,14 +101,14 @@
               <div class="mb-3">
                 <label class="control-label" name="category">Category</label>
                 <select class="form-control select2" name="category">
-                  <option>Select</option>
+                  <option value="<%= product.category %>"><%= product.category %></option>
                   <option value="vege">Fruits And Vegetables</option>
                   <option value="meat">Meats And Seafood</option>
                 </select>
               </div>
               <div class="mb-3">
                 <label for="unit">Unit</label>
-                <input id="unit" name="unit" type="text" class="form-control" />
+                <input id="unit" name="unit" type="text" class="form-control" value="<%= product.unit %>"> 
               </div>
               <div class="mb-3">
                 <label for="weight">Weight</label>
@@ -113,12 +117,13 @@
                   name="weight"
                   type="text"
                   class="form-control"
-                />
+                  value="<%= product.weight %>">
+          
               </div>
               <div class="mb-3">
                 <label for="description">Product Description</label>
-                <textarea name="description" class="form-control" id="description" rows="5"
-                ></textarea>
+                <textarea name="description" class="form-control" id="description" rows="5" value="<%= product.description %>"><%= product.description %>
+                </textarea>
               </div>
             </div>
           </div>
@@ -128,7 +133,7 @@
               type="submit"
               class="btn btn-primary waves-effect waves-light"
             >
-              Create Product
+              Edit Product
             </button>
             <button
               type="button"

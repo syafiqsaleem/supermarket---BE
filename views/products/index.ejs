@@ -102,7 +102,7 @@
                 <div class="product-img position-relative">
                   <div class="avatar-sm product-ribbon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      - 25 %
+                      <%= element.stocks %> 
                     </span>
                   </div>
                   <img
@@ -113,7 +113,7 @@
                 </div>
                 <div class="mt-4 text-center">
                   <h5 class="mb-3 text-truncate">
-                    <a href="#" class="text-dark"><%= element.name %> </a>
+                    <a href="/products/<%= element.slug %>/edit" class="text-dark"><%= element.name %> </a>
                   </h5>
 
                   <h5 class="my-0">
@@ -122,6 +122,13 @@
                     >
                     <b>$ <%= element.price %></b>
                   </h5>
+                  <button
+                      type="button"
+                      class="btn btn-success waves-effect mt-2 waves-light"
+                    >
+                   
+                      <i class="bx bx-shopping-bag me-2"> <a href="/products/<%= element.slug %>/edit"></i>Edit Product
+                      </a></button>
                 </div>
               </div>
             </div>

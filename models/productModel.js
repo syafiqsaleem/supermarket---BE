@@ -32,6 +32,15 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: String,
+    enum: [
+      'Fruits & Vegetables',
+      'Meat & Seafood',
+      'Breakfast & Milk',
+      'Beverages',
+      'Biscuits & Snacks',
+      'Frozen Food',
+      'Rice Pasta and Grains',
+    ],
   },
   stocks: {
     type: Number,
