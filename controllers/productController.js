@@ -1,21 +1,26 @@
 const Product = require('../models/productModel')
 
-exports.getAllProducts = async (req, res) => {
-  try {
-    products = await Product.find()
-  } catch (err) {
-    res.statusCode(500)
-    return 'server error'
-  }
-
-  res.status(200).json({
-    status: 'success',
-    results: products.length,
-    data: {
-      products,
-    },
+exports.getAllProducts = (req, res) => {
+  Product.find().then((results) => {
+    res.json(results)
   })
 }
+// exports.getAllProducts = async (req, res) => {
+//   try {
+//     products = await Product.find()
+//   } catch (err) {
+//     res.statusCode(500)
+//     return 'server error'
+//   }
+
+//   res.json({
+//     status: 'success',
+//     results: products.length,
+//     data: {
+//       products,
+//     },
+//   })
+// }
 
 exports.getProduct = async (req, res) => {
   try {

@@ -1,0 +1,241 @@
+<%- contentFor('HeaderCss') %>
+<!-- select2 css -->
+<link
+  href="/public/assets/libs/select2/css/select2.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+<!-- dropzone css -->
+<link
+  href="/public/assets/libs/dropzone/min/dropzone.min.css"
+  rel="stylesheet"
+  type="text/css"
+/>
+
+<%- contentFor('breadcrumb') %>
+<!-- start page title -->
+<div class="row">
+  <div class="col-12">
+    <div
+      class="
+        page-title-box
+        d-sm-flex
+        align-items-center
+        justify-content-between
+      "
+    >
+      <h4 class="mb-sm-0 font-size-18">Add Product</h4>
+
+      <div class="page-title-right">
+        <ol class="breadcrumb m-0">
+          <li class="breadcrumb-item">
+            <a href="javascript: void(0);">Siong Siong Supermart</a>
+          </li>
+          <li class="breadcrumb-item active">Edit Product</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end page title -->
+
+<%- contentFor('body') %>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Product Information</h4>
+        <p class="card-title-desc">Fill all information below</p>
+
+        <form method="POST" action="/products/<%= product.slug %>?_method=PATCH">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label for="productname">Product Name</label>
+                <input id="name" name="name" type="text" class="form-control" value="<%= product.name %>">
+              </div>
+              <div class="mb-3">
+                <label for="brand">Brand</label>
+                <input
+                  id="brand"
+                  name="brand"
+                  type="text"
+                  class="form-control"
+                  value="<%= product.name %>">
+                
+              </div>
+              <div class="mb-3">
+                <label for="origin">Origin</label>
+                <input
+                  id="origin"
+                  name="origin"
+                  type="text"
+                  class="form-control"
+                  value="<%= product.origin %>">
+                
+              </div>
+              <div class="mb-3">
+                <label for="price">Price</label>
+                <input
+                  id="price"
+                  name="price"
+                  type="text"
+                  class="form-control"
+                  value="<%= product.price %>">
+                
+              </div>
+              <div class="mb-3">
+                <label for="stocks">Stocks</label>
+                <input
+                  id="stocks"
+                  name="stocks"
+                  type="text"
+                  class="form-control"
+                  value="<%= product.stocks %>">
+                
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label class="control-label" name="category">Category</label>
+                <select class="form-control select2" name="category">
+                  <option value="<%= product.category %>"><%= product.category %></option>
+                  <option value="vege">Fruits And Vegetables</option>
+                  <option value="meat">Meats And Seafood</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="unit">Unit</label>
+                <input id="unit" name="unit" type="text" class="form-control" value="<%= product.unit %>"> 
+              </div>
+              <div class="mb-3">
+                <label for="weight">Weight</label>
+                <input
+                  id="weight"
+                  name="weight"
+                  type="text"
+                  class="form-control"
+                  value="<%= product.weight %>">
+          
+              </div>
+              <div class="mb-3">
+                <label for="description">Product Description</label>
+                <textarea name="description" class="form-control" id="description" rows="5" value="<%= product.description %>"><%= product.description %>
+                </textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary waves-effect waves-light"
+            >
+              Edit Product
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary waves-effect waves-light"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Product Images</h4>
+
+        <form action="/" method="post" class="dropzone">
+          <div class="fallback">
+            <input name="file" type="file" multiple />
+          </div>
+
+          <div class="dz-message needsclick">
+            <div class="mb-3">
+              <i class="display-4 text-muted bx bxs-cloud-upload"></i>
+            </div>
+
+            <h4>Drop files here or click to upload.</h4>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- end card-->
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Inventory</h4>
+        <p class="card-title-desc">Fill all information below</p>
+
+        <form>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="mb-3">
+                <label for="stocks">Stocks Available</label>
+                <input
+                  id="stocks"
+                  name="stocks"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="status">Status</label>
+                <input
+                  id="status"
+                  name="status"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </div>
+
+            <!-- <div class="col-sm-6">
+              <div class="mb-3">
+                <label for="metadescription">Meta Description</label>
+                <textarea
+                  class="form-control"
+                  id="metadescription"
+                  rows="5"
+                ></textarea>
+              </div>
+            </div>
+          </div> -->
+
+          <div class="d-flex flex-wrap gap-2">
+            <button
+              type="submit"
+              class="btn btn-primary waves-effect waves-light"
+            >
+              Save Changes
+            </button>
+            <button
+              type="submit"
+              class="btn btn-secondary waves-effect waves-light"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end row -->
+
+<%- contentFor('FooterJs') %>
+<!-- select 2 plugin -->
+<script src="public/assets/libs/select2/js/select2.min.js"></script>
+
+<!-- dropzone plugin -->
+<script src="public/assets/libs/dropzone/min/dropzone.min.js"></script>
+
+<!-- init js -->
+<script src="public/assets/js/pages/ecommerce-select2.init.js"></script>
+
+<%- contentFor('BottomJs') %>
