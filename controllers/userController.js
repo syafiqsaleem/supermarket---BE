@@ -1,4 +1,4 @@
-const User = require("../models/user");
+const User = require("../models/userModel");
 
 exports.signup = (req, res) => {
   console.log("req.body", req.body);
