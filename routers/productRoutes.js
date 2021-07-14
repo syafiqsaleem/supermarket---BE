@@ -1,6 +1,6 @@
 const express = require('express')
 const viewsController = require('../controllers/viewsController')
-const { read } = require('../controllers/productController')
+const { read, create } = require('../controllers/productController')
 const router = express.Router()
 
 // router
@@ -15,5 +15,5 @@ const router = express.Router()
 //   .delete(productController.deleteProduct)
 
 router.get('/product/:productId', read)
-// router.post('/product/create/:userId')
+router.post('/product/:productId', create)
 module.exports = router
