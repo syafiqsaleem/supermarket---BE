@@ -1,95 +1,37 @@
-const Product = require('../models/productModel')
+const formidable = require("formidable")
+const _ = require("lodash")
+const fs = require('fs')
+const Product = require("../models/productModel")
 
-exports.getAllProducts = (req, res) => {
-  Product.find().then((results) => {
-    res.json(results)
+exports.create = (req, res) = {
+  let form = new formidable.IncomingForm()
+  form.keepExtensions = true
+  form.parse(req, (err,fields, files) => {
+    if(err) {
+      return res.status(400).json({
+        error: 'Image could not be uploaded'
+      })
+    }
+    let product = new Product(fields)
+
+    if (files.photo) {
+  
+      if (files.photo.size > 1000000) {
+          return res.status(400).json({
+              error: 'Image should be less than 1mb in size'
+          });
+      }
+      product.photo.data = fs.readFileSync(files.photo.path);
+      product.photo.contentType = files.photo.type;
+  }
+
+  product.save((err, result) => {
+    if(err) {
+      return res.status(400).json({
+        error: errorHandler(error)
+      })
+    }
+    res.json(result)
   })
-}
-// exports.getAllProducts = async (req, res) => {
-//   try {
-//     products = await Product.find()
-//   } catch (err) {
-//     res.statusCode(500)
-//     return 'server error'
-//   }
-
-//   res.json({
-//     status: 'success',
-//     results: products.length,
-//     data: {
-//       products,
-//     },
-//   })
-// }
-
-exports.getProduct = async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id)
-    res.status(200).json({
-      status: 'success',
-      data: {
-        product,
-      },
-    })
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    })
-  }
-}
-
-exports.createProduct = async (req, res) => {
-  try {
-    const newProduct = await Product.create(req.body)
-
-    res.status(201).json({
-      status: 'success',
-      data: {
-        product: newProduct,
-      },
-    })
-  } catch (err) {
-    res.status(400).json({
-      status: 'fail',
-      message: err,
-    })
-  }
-}
-
-exports.updateProduct = async (req, res) => {
-  try {
-    const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
-    })
-
-    res.status(200).json({
-      status: 'success',
-      data: {
-        product,
-      },
-    })
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    })
-  }
-}
-
-exports.deleteProduct = async (req, res) => {
-  try {
-    await Product.findByIdAndDelete(req.params.id)
-
-    res.status(204).json({
-      status: 'success',
-      data: null,
-    })
-  } catch (err) {
-    res.status(404).json({
-      status: 'fail',
-      message: err,
-    })
-  }
+  })
 }

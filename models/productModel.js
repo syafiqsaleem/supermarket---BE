@@ -31,7 +31,7 @@ const productSchema = new mongoose.Schema({
     trim: true,
   },
   category: {
-    type: String,
+    type: ObjectId,
     enum: [
       'Fruits & Vegetables',
       'Meat & Seafood',
