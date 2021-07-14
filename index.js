@@ -15,7 +15,7 @@ const flash = require('connect-flash')
 const port = process.env.PORT || '8000'
 const productRouter = require('./routers/productRoutes')
 const viewRouter = require('./routers/viewRoutes')
-const customerController = require('./controllers/customerController')
+const categoryRouter = require('./routers/categoryRoutes')
 app.use(bodyParser.json())
 var urlencodeParser = bodyParser.urlencoded({ extended: true })
 
@@ -65,8 +65,8 @@ mongoose.set('useCreateIndex', true)
 
 // Define All Route
 app.use('/', viewRouter)
-app.post('/api/v1/customers/register', customerController.register)
 app.use('/api/v1/products', productRouter)
+app.use('/api/v1/products', categoryRouter)
 
 mongoose
   .connect(mongo_URI, { useNewUrlParser: true, useUnifiedTopology: true })

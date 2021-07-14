@@ -1,12 +1,14 @@
 const mongoose = require('mongoose')
 const slugify = require('slugify')
+const { ObjectId } = mongoose.Schema
+
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
     required: 'Name is required',
   },
-  image: {
+  photo: {
     data: Buffer,
     contentType: String,
   },
@@ -32,15 +34,8 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: ObjectId,
-    enum: [
-      'Fruits & Vegetables',
-      'Meat & Seafood',
-      'Breakfast & Milk',
-      'Beverages',
-      'Biscuits & Snacks',
-      'Frozen Food',
-      'Rice Pasta and Grains',
-    ],
+    ref: 'Category',
+    required: true,
   },
   stocks: {
     type: Number,
@@ -59,6 +54,11 @@ const productSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  shipping: {
+    type: Boolean,
+    required: false,
+  },
+
   slug: { type: String, unique: true },
 })
 
