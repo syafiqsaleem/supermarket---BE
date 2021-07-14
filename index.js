@@ -6,7 +6,6 @@ const methodOverride = require("method-override");
 const path = require("path");
 const http = require("http").Server(app);
 
-const validator = require("express-validator");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -18,7 +17,15 @@ const port = process.env.PORT || 8000;
 const productRouter = require("./routers/productRoutes");
 const viewRouter = require("./routers/viewRoutes");
 const userRouter = require("./routers/userRoutes");
+const expressValidator = require("express-validator");
 // var urlencodeParser = bodyParser.urlencoded({ extended: true });
+
+// middlewares
+app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(expressValidator());
 
 app.use(
   session({
@@ -52,11 +59,6 @@ app.use("/public", express.static("public"));
 app.get("/layouts/", function (req, res) {
   res.render("view");
 });
-
-// middlewares
-app.use(morgan("dev"));
-app.use(bodyParser.json());
-app.use(cookieParser());
 
 //For set layouts of html view
 const expressLayouts = require("express-ejs-layouts");
