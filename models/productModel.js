@@ -32,6 +32,7 @@ const productSchema = new mongoose.Schema({
     type: String,
     trim: true,
   },
+  // Set to ObjectId in order to use populate
   category: {
     type: ObjectId,
     ref: 'Category',

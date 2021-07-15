@@ -14,6 +14,6 @@ const router = express.Router()
 //   .patch(productController.updateProduct)
 //   .delete(productController.deleteProduct)
 
-router.get('/product/:productId', read)
-router.post('/product/:productId', create)
+router.get('/', read)
+router.post('/', create)
 module.exports = router
