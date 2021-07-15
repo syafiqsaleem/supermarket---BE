@@ -20,7 +20,7 @@ const authRouter = require("./routers/authRoutes");
 const userRouter = require("./routers/userRoutes");
 const categoryRouter = require('./routers/categoryRoutes')
 const expressValidator = require("express-validator");
-// var urlencodeParser = bodyParser.urlencoded({ extended: true });
+
 
 // middlewares
 app.use(morgan("dev"));
