@@ -1,13 +1,19 @@
 const express = require("express");
 const router = express.Router();
 
-const { requireSignin } = require("../controllers/authController");
+const {
+  requireSignin,
+  isAuth,
+  isAdmin,
+} = require("../controllers/authController");
 
 const { userById } = require("../controllers/userController");
 
 //Test route
 // Anytime we want to make request to this link from react or postman, we need to send secret/:userId
-router.get("/secret/:userId", requireSignin, (req, res) => {
+// requireSignin: Require user to be signed in
+// isAuth: Ensure current id matches to req.profile to access this route
+router.get("/secret/:userId", requireSignin, isAuth, isAdmin, (req, res) => {
   res.json({
     user: req.profile,
   });
