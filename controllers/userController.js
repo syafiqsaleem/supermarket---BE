@@ -48,3 +48,11 @@ exports.signout = (req, res) => {
   res.clearCookie("t");
   res.json({ message: "Signout success" });
 };
+
+// requires cookie-parser to be installed
+// requireSignin will be used as a middleware to protect any route
+exports.requireSignin = expressJwt({
+  secret: process.env.SESSION_SECRET,
+  algorithms: ["sha1", "RS256", "HS256"],
+  userProperty: "auth",
+});
