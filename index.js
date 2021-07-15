@@ -16,6 +16,7 @@ const flash = require("connect-flash");
 const port = process.env.PORT || 8000;
 const productRouter = require("./routers/productRoutes");
 const viewRouter = require("./routers/viewRoutes");
+const authRouter = require("./routers/authRoutes");
 const userRouter = require("./routers/userRoutes");
 const expressValidator = require("express-validator");
 // var urlencodeParser = bodyParser.urlencoded({ extended: true });
@@ -75,6 +76,7 @@ mongoose.set("useCreateIndex", true);
 
 // Define All Route
 app.use("/", viewRouter);
+app.use("/api", authRouter);
 app.use("/api", userRouter);
 app.use("/api/v1/products", productRouter);
 

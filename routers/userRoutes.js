@@ -1,30 +1,20 @@
-// const express = require("express");
-// const customerController = require('../controllers/customerController')
-// const router = express.Router();
-
-// app.post("/api/v1/customers/register", customerController.register);
-
-// module.exports = router;
-
 const express = require("express");
 const router = express.Router();
 
-const {
-  signup,
-  signin,
-  signout,
-  requireSignin,
-} = require("../controllers/userController");
-const { userSignupValidator } = require("../validator/userValidator");
+const { requireSignin } = require("../controllers/authController");
 
-router.post("/signup", userSignupValidator, signup);
-router.post("/signin", signin);
-router.get("/signout", signout);
+const { userById } = require("../controllers/userController");
 
-// Testing functionality of requiring user to be signed in
-// requireSignin is the middleware that ensures user is signed in before receiving the data
-// router.get("/hello", requireSignin, (req, res) => {
-//   res.send("hello there");
-// });
+//Test route
+// Anytime we want to make request to this link from react or postman, we need to send secret/:userId
+router.get("/secret/:userId", requireSignin, (req, res) => {
+  res.json({
+    user: req.profile,
+  });
+});
+
+// We want to take the parameter
+// So anytime there is a parameter called 'userId' in the route, we want to execute userById method
+router.param("userId", userById);
 
 module.exports = router;
