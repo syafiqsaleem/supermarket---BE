@@ -29,6 +29,7 @@
     "express-flash-messages": "^0.1.1",
     "express-jwt": "^6.0.0",
     "express-session": "^1.17.1",
+    "formidable": "^1.2.2",
     "express-validator": "^5.3.1",
     "http": "^0.0.1-security",
     "i18n-express": "^1.1.3",

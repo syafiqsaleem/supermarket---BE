@@ -18,6 +18,7 @@ const productRouter = require("./routers/productRoutes");
 const viewRouter = require("./routers/viewRoutes");
 const authRouter = require("./routers/authRoutes");
 const userRouter = require("./routers/userRoutes");
+const categoryRouter = require('./routers/categoryRoutes')
 const expressValidator = require("express-validator");
 // var urlencodeParser = bodyParser.urlencoded({ extended: true });
 
@@ -27,6 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(expressValidator());
+
 
 app.use(
   session({
@@ -75,10 +77,12 @@ mongoose.set("useFindAndModify", false);
 mongoose.set("useCreateIndex", true);
 
 // Define All Route
+
 app.use("/", viewRouter);
 app.use("/api", authRouter);
 app.use("/api", userRouter);
-app.use("/api/v1/products", productRouter);
+app.use('/api', categoryRouter)
+app.use("/api", productRouter);
 
 mongoose
   .connect(mongo_URI, { useNewUrlParser: true, useUnifiedTopology: true })
