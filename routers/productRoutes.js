@@ -1,19 +1,38 @@
 const express = require('express')
-const viewsController = require('../controllers/viewsController')
-const { read, create } = require('../controllers/productController')
 const router = express.Router()
+const {
+  create,
+  productById,
+  read,
+  remove,
+  update,
+  listCategories,
+} = require('../controllers/productController')
+const {
+  requireSignin,
+  isAuth,
+  isAdmin,
+} = require('../controllers/authController')
+const { userById } = require('../controllers/userController')
 
-// router
-//   .route('/')
-//   .get(productController.getAllProducts)
-//   .post(productController.createProduct)
+router.get('/product/:productId', read)
+router.post('/product/create/:userId', requireSignin, isAuth, isAdmin, create)
+router.delete(
+  '/product/:productId/:userId',
+  requireSignin,
+  isAuth,
+  isAdmin,
+  remove
+)
+router.put(
+  '/product/:productId/:userId',
+  requireSignin,
+  isAuth,
+  isAdmin,
+  update
+)
+router.get('/products/categories', listCategories)
+router.param('userId', userById)
+router.param('productId', productById)
 
-// router
-//   .route('/:id')
-//   .get(productController.getProduct)
-//   .patch(productController.updateProduct)
-//   .delete(productController.deleteProduct)
-
-router.get('/', read)
-router.post('/', create)
 module.exports = router

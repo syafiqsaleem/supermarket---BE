@@ -1,73 +1,47 @@
 const mongoose = require('mongoose')
-const slugify = require('slugify')
 const { ObjectId } = mongoose.Schema
 
-const productSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    trim: true,
-    required: 'Name is required',
+const productSchema = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      trim: true,
+      required: true,
+      maxlength: 32,
+    },
+    description: {
+      type: String,
+      required: true,
+      maxlength: 2000,
+    },
+    price: {
+      type: Number,
+      trim: true,
+      required: true,
+      maxlength: 32,
+    },
+    category: {
+      type: ObjectId,
+      ref: 'Category',
+      required: true,
+    },
+    stocks: {
+      type: Number,
+    },
+    sold: {
+      type: Number,
+      default: 0,
+    },
+    photo: {
+      data: Buffer,
+      contentType: String,
+    },
+    shipping: {
+      required: false,
+      type: Boolean,
+    },
   },
-  photo: {
-    data: Buffer,
-    contentType: String,
-  },
-  brand: {
-    type: String,
-    trim: true,
-  },
-  origin: {
-    type: String,
-    trim: true,
-  },
-  weight: {
-    type: String,
-    trim: true,
-  },
-  unit: {
-    type: String,
-    trim: true,
-  },
-  description: {
-    type: String,
-    trim: true,
-  },
-  // Set to ObjectId in order to use populate
-  category: {
-    type: ObjectId,
-    ref: 'Category',
-    required: true,
-  },
-  stocks: {
-    type: Number,
-    required: 'Stocks is required',
-  },
-  price: {
-    type: Number,
-    required: 'Price is required',
-  },
-  status: {
-    type: String,
-    enum: ['In stocks', 'Out of Stock'],
-  },
-  updated: Date,
-  created: {
-    type: Date,
-    default: Date.now,
-  },
-  shipping: {
-    type: Boolean,
-    required: false,
-  },
+  { timestamps: true }
+)
 
-  slug: { type: String, unique: true },
-})
-
-productSchema.pre('save', function (next) {
-  this.slug = slugify(this.name, { lower: true })
-  next()
-})
-
-const Product = mongoose.model('Product', productSchema)
-
-module.exports = Product
+module.exports = mongoose.model('Product', productSchema)
