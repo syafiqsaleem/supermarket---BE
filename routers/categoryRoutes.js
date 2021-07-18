@@ -1,7 +1,20 @@
 const express = require('express')
 const router = express.Router()
-const { create } = require('../controllers/categoryController')
+const {
+  create,
+  categoryById,
+  read,
+} = require('../controllers/categoryController')
+const {
+  requireSignin,
+  isAuth,
+  isAdmin,
+} = require('../controllers/authController')
+const { userById } = require('../controllers/userController')
 
-router.post('/category/create/', create)
-
+router.get('/category/:categoryId', read)
+router.post('/category/create/:userId', requireSignin, isAuth, isAdmin, create)
+router.put('/category/:categoryId/:userId', requireSignin, isAuth, isAdmin)
+router.param('categoryId', categoryById)
+router.param('userId', userById)
 module.exports = router
