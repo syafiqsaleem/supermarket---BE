@@ -1,8 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const {
-  create,
   productById,
+  create,
   read,
   remove,
   update,
@@ -35,6 +35,8 @@ router.put(
 )
 router.get('/products', list)
 router.get('/products/categories', listCategories)
+router.get('/product/photo/:productId', photo)
+
 router.param('userId', userById)
 router.param('productId', productById)
 

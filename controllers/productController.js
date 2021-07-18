@@ -2,9 +2,10 @@ const formidable = require('formidable')
 const _ = require('lodash')
 const fs = require('fs')
 const Product = require('../models/productModel')
+const { errorHandler } = require('../helpers/dbErrorHandler')
 
 exports.productById = (req, res, next, id) => {
-  Product.findbyId(id)
+  Product.findById(id)
     .populate('category')
     .exec((err, product) => {
       if (err || !product) {
