@@ -44,13 +44,7 @@ app.use(
     extended: true,
   })
 )
-app.use(
-  cors({
-    origin: '*',
-  })
-)
-
-app.options('*', cors())
+app.use(cors())
 
 app.use(session({ resave: false, saveUninitialized: true, secret: 'nodedemo' }))
 app.use(flash())

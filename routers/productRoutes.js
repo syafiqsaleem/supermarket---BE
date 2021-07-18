@@ -6,6 +6,7 @@ const {
   read,
   remove,
   update,
+  list,
   listCategories,
 } = require('../controllers/productController')
 const {
@@ -31,6 +32,7 @@ router.put(
   isAdmin,
   update
 )
+router.get('/products', list)
 router.get('/products/categories', listCategories)
 router.param('userId', userById)
 router.param('productId', productById)
