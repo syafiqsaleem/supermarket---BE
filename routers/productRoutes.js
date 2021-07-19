@@ -9,6 +9,7 @@ const {
   listCategories,
   list,
   photo,
+  listBySearch,
 } = require('../controllers/productController')
 const {
   requireSignin,
@@ -35,6 +36,7 @@ router.put(
 )
 router.get('/products', list)
 router.get('/products/categories', listCategories)
+router.post('/products/by/search', listBySearch)
 router.get('/product/photo/:productId', photo)
 
 router.param('userId', userById)
