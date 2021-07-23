@@ -30,6 +30,7 @@ exports.listOrders = (req, res) => {
     });
 };
 
+// We will be able to send the enum values, to the frontend
 exports.getStatusValues = (req, res) => {
   res.json(Order.schema.path("status").enumValues);
 };

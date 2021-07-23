@@ -31,6 +31,7 @@ router.post(
 // list all the orders to give to the frontend
 router.get("/order/list/:userId", requireSignin, isAuth, isAdmin, listOrders);
 
+// To update shipping status
 router.get(
   "/order/status-values/:userId",
   requireSignin,
