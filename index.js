@@ -19,6 +19,7 @@ const categoryRouter = require("./routers/categoryRoutes");
 const productRouter = require("./routers/productRoutes");
 const viewRouter = require("./routers/viewRoutes");
 const braintreeRouter = require("./routers/braintree");
+const orderRouter = require("./routers/orderRoutes");
 
 const expressValidator = require("express-validator");
 
@@ -83,6 +84,7 @@ app.use("/api", userRouter);
 app.use("/api", categoryRouter);
 app.use("/api", productRouter);
 app.use("/api", braintreeRouter);
+app.use("/api", orderRouter);
 
 mongoose
   .connect(mongo_URI, { useNewUrlParser: true, useUnifiedTopology: true })
