@@ -6,15 +6,18 @@ const {
   isAuth,
   isAdmin,
 } = require("../controllers/authController");
+
 const {
   userById,
   addOrderToUserHistory,
 } = require("../controllers/userController");
+
 const {
   create,
   listOrders,
   getStatusValues,
 } = require("../controllers/orderController");
+
 const { decreaseQuantity } = require("../controllers/productController");
 
 router.post(
@@ -25,21 +28,15 @@ router.post(
   decreaseQuantity,
   create
 );
-
-router.get(
-  "/order/list/:userId",
-  requireSignin,
-  isAuth,
-  isAdmin,
-  getStatusValues
-);
+// list all the orders to give to the frontend
+router.get("/order/list/:userId", requireSignin, isAuth, isAdmin, listOrders);
 
 router.get(
   "/order/status-values/:userId",
   requireSignin,
   isAuth,
   isAdmin,
-  listOrders
+  getStatusValues
 );
 
 router.param("userId", userById);

@@ -207,15 +207,17 @@ exports.listBySearch = (req, res) => {
 };
 
 exports.decreaseQuantity = (req, res, next) => {
+  // bulkOps: bulk options
   let bulkOps = req.body.order.products.map((item) => {
     return {
+      // Can use updateOne due to mongoose
       updateOne: {
         filter: { _id: item._id },
         update: { $inc: { stocks: -item.count, sold: +item.count } },
       },
     };
   });
-
+  // bulkWrite: Get this method by mongoose
   Product.bulkWrite(bulkOps, {}, (error, products) => {
     if (error) {
       return res.status(400).json({
