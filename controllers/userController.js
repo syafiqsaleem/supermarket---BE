@@ -30,6 +30,7 @@ exports.addOrderToUserHistory = (req, res, next) => {
   User.findOneAndUpdate(
     { _id: req.profile._id },
     { $push: { history: history } },
+    // Send back the updated data as JSON we use new: true
     { new: true },
     (error, data) => {
       if (error) {
