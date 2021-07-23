@@ -16,6 +16,8 @@ const {
   create,
   listOrders,
   getStatusValues,
+  orderById,
+  updateOrderStatus,
 } = require("../controllers/orderController");
 
 const { decreaseQuantity } = require("../controllers/productController");
@@ -31,7 +33,7 @@ router.post(
 // list all the orders to give to the frontend
 router.get("/order/list/:userId", requireSignin, isAuth, isAdmin, listOrders);
 
-// To update shipping status
+// To get shipping status
 router.get(
   "/order/status-values/:userId",
   requireSignin,
@@ -40,6 +42,17 @@ router.get(
   getStatusValues
 );
 
+// To change shipping status
+// put: because we're updating status
+router.put(
+  "/order/:orderId/status/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  updateOrderStatus
+);
+
 router.param("userId", userById);
+router.param("orderId", orderById);
 
 module.exports = router;
