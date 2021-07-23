@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+
 const {
   requireSignin,
   isAuth,
@@ -9,7 +10,11 @@ const {
   userById,
   addOrderToUserHistory,
 } = require("../controllers/userController");
-const { create, listOrders } = require("../controllers/orderController");
+const {
+  create,
+  listOrders,
+  getStatusValues,
+} = require("../controllers/orderController");
 const { decreaseQuantity } = require("../controllers/productController");
 
 router.post(
@@ -21,7 +26,21 @@ router.post(
   create
 );
 
-router.get("/order/list/:userId", requireSignin, isAuth, isAdmin, listOrders);
+router.get(
+  "/order/list/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  getStatusValues
+);
+
+router.get(
+  "/order/status-values/:userId",
+  requireSignin,
+  isAuth,
+  isAdmin,
+  listOrders
+);
 
 router.param("userId", userById);
 

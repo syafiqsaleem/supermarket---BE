@@ -3,6 +3,7 @@ const { errorHandler } = require("../helpers/dbErrorHandler");
 
 exports.create = (req, res) => {
   // console.log("CREATE ORDER: ", req.body);
+  // Each order will be associated with the user, hence, we need to get the user first
   req.body.order.user = req.profile;
   const order = new Order(req.body.order);
   order.save((error, data) => {
@@ -27,4 +28,8 @@ exports.listOrders = (req, res) => {
       }
       res.json(orders);
     });
+};
+
+exports.getStatusValues = (req, res) => {
+  res.json(Order.schema.path("status").enumValues);
 };

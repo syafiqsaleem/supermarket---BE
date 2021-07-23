@@ -19,7 +19,7 @@ const categoryRouter = require("./routers/categoryRoutes");
 const productRouter = require("./routers/productRoutes");
 const viewRouter = require("./routers/viewRoutes");
 const braintreeRouter = require("./routers/braintree");
-const orderRouter = require("./routers/order");
+const orderRouter = require("./routers/orderRoutes");
 
 const expressValidator = require("express-validator");
 
